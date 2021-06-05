@@ -25,7 +25,11 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 <body>
     <div style="overflow-x: auto">
-    <a class="tambah" href="{{ route('guru0121.create') }}">Tambah Data </a>
+    <form class="example">
+                        <input type="text" placeholder="Search.." name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+    <a href="{{route('guru0121.create')}}" class="button button-hijau">Tambah Data</a>
     <table>
         <thead>
             <tr>
@@ -41,7 +45,13 @@ tr:nth-child(even){background-color: #f2f2f2}
                 <td>{{ $no++ }}</td>
                 <td>{{ $gr->nama}}</td>
                 <td>{{ $gr->mengajar}}</td>
-                   </form>
+                <td>
+                <form action="{{ route('guru0121.destroy', $gr->id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="{{ route('guru0121.edit', $gr->id) }}" class="button button-orange">Edit</a>
+                                    <button type="submit" class="button button-merah">Delete</button>
+                                </form>
                 </td>
             </tr>
             @endforeach
